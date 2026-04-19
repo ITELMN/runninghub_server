@@ -1,8 +1,10 @@
-// ComfyUI workflow template based on ERNIE-Image-Turbo 文生图_api.json
-export const workflowTemplate = {
+{
   "1": {
     "inputs": {
-      "conditioning": ["6", 0]
+      "conditioning": [
+        "6",
+        0
+      ]
     },
     "class_type": "ConditioningZeroOut",
     "_meta": {
@@ -33,7 +35,10 @@ export const workflowTemplate = {
   "4": {
     "inputs": {
       "filename_prefix": "StarTed/Ernie-Image-Turbo",
-      "images": ["8", 0]
+      "images": [
+        "8",
+        0
+      ]
     },
     "class_type": "SaveImage",
     "_meta": {
@@ -42,8 +47,11 @@ export const workflowTemplate = {
   },
   "6": {
     "inputs": {
-      "text": "{{prompt}}",
-      "clip": ["3", 0]
+      "text": "暑期儿童美术集训营海报设计，顶部大标题文字\"夏日艺术营\"使用阳光活力字体，副标题\"21天成就小小艺术家\"，底部包含\"7月15日开营\"和\"早鸟优惠8折\"，明亮的夏日色彩背景，多个卡通儿童在户外写生，太阳、画架、调色板装饰，充满活力，正方形排版，高清\n",
+      "clip": [
+        "3",
+        0
+      ]
     },
     "class_type": "CLIPTextEncode",
     "_meta": {
@@ -61,8 +69,14 @@ export const workflowTemplate = {
   },
   "8": {
     "inputs": {
-      "samples": ["10", 0],
-      "vae": ["7", 0]
+      "samples": [
+        "10",
+        0
+      ],
+      "vae": [
+        "7",
+        0
+      ]
     },
     "class_type": "VAEDecode",
     "_meta": {
@@ -71,16 +85,28 @@ export const workflowTemplate = {
   },
   "10": {
     "inputs": {
-      "seed": "{{seed}}",
-      "steps": "{{steps}}",
-      "cfg": "{{cfg_scale}}",
+      "seed": 726759835087377,
+      "steps": 8,
+      "cfg": 1,
       "sampler_name": "euler",
       "scheduler": "simple",
       "denoise": 1,
-      "model": ["2", 0],
-      "positive": ["6", 0],
-      "negative": ["1", 0],
-      "latent_image": ["11", 0]
+      "model": [
+        "2",
+        0
+      ],
+      "positive": [
+        "6",
+        0
+      ],
+      "negative": [
+        "1",
+        0
+      ],
+      "latent_image": [
+        "11",
+        0
+      ]
     },
     "class_type": "KSampler",
     "_meta": {
@@ -89,20 +115,13 @@ export const workflowTemplate = {
   },
   "11": {
     "inputs": {
-      "width": "{{width}}",
-      "height": "{{height}}",
-      "batch_size": "{{batch_size}}"
+      "width": 1024,
+      "height": 1024,
+      "batch_size": 1
     },
     "class_type": "EmptyFlux2LatentImage",
     "_meta": {
       "title": "Empty Flux 2 Latent"
     }
   }
-};
-
-// Node IDs for parameter modification
-export const nodeIds = {
-  PROMPT: "6",  // CLIP Text Encode node
-  KSAMPLER: "10",
-  LATENT_IMAGE: "11"
-};
+}

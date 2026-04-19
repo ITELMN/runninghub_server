@@ -9,10 +9,9 @@ router.post('/generations', async (req, res) => {
   try {
     const {
       prompt,
-      negative_prompt = "低分辨率、模糊、失焦、像素化、噪点多、曝光异常、解剖错误、比例失调、多余肢体、不自然光影、饱和度异常、构图混乱、无关元素、纹理失真、版权违规、皮肤瑕疵、透视错误、悬浮物体、色彩违和、低对比度、边缘锯齿、过度对称、主体模糊",
       image_size = process.env.DEFAULT_IMAGE_SIZE || "1024x1024",
-      num_inference_steps = parseInt(process.env.DEFAULT_STEPS) || 20,
-      guidance_scale = parseFloat(process.env.DEFAULT_CFG_SCALE) || 2.5,
+      num_inference_steps = parseInt(process.env.DEFAULT_STEPS) || 8,
+      guidance_scale = parseFloat(process.env.DEFAULT_CFG_SCALE) || 1,
       seed = generateRandomSeed(),
       batch_size = parseInt(process.env.DEFAULT_BATCH_SIZE) || 1
     } = req.body;
@@ -72,10 +71,8 @@ router.post('/generations', async (req, res) => {
     // Create task
     const taskResponse = await runningHub.createTask({
       prompt,
-      negativePrompt: negative_prompt,
       width: sizeConfig.width,
       height: sizeConfig.height,
-      aspectRatio: sizeConfig.aspectRatio,
       steps: num_inference_steps,
       cfgScale: guidance_scale,
       seed,

@@ -12,33 +12,23 @@ export class RunningHubService {
   }
 
   async createTask(params) {
-    const { prompt, negativePrompt, width, height, aspectRatio, steps, cfgScale, seed, batchSize } = params;
+    const { prompt, width, height, steps, cfgScale, seed, batchSize } = params;
 
     try {
       // Ensure UTF-8 encoding for Chinese characters
       const utf8Prompt = Buffer.from(prompt, 'utf-8').toString('utf-8');
-      const utf8NegativePrompt = Buffer.from(negativePrompt, 'utf-8').toString('utf-8');
       
       console.log('Creating task with params:');
       console.log('- workflowId:', this.workflowId);
       console.log('- prompt:', utf8Prompt);
-      console.log('- negative_prompt:', utf8NegativePrompt);
+      console.log('- size:', `${width}x${height}`);
+      console.log('- steps:', steps);
       
       const nodeInfoList = [
         {
           nodeId: nodeIds.PROMPT,
           fieldName: "text",
           fieldValue: utf8Prompt
-        },
-        {
-          nodeId: nodeIds.PROMPT_SHOW,
-          fieldName: "text",
-          fieldValue: utf8Prompt
-        },
-        {
-          nodeId: nodeIds.NEGATIVE_PROMPT,
-          fieldName: "text",
-          fieldValue: utf8NegativePrompt
         },
         {
           nodeId: nodeIds.KSAMPLER,
@@ -56,28 +46,18 @@ export class RunningHubService {
           fieldValue: cfgScale
         },
         {
-          nodeId: nodeIds.ASPECT_RATIO,
+          nodeId: nodeIds.LATENT_IMAGE,
           fieldName: "width",
           fieldValue: width
         },
         {
-          nodeId: nodeIds.ASPECT_RATIO,
+          nodeId: nodeIds.LATENT_IMAGE,
           fieldName: "height",
           fieldValue: height
         },
         {
-          nodeId: nodeIds.ASPECT_RATIO,
-          fieldName: "aspect_ratio",
-          fieldValue: aspectRatio
-        },
-        {
-          nodeId: nodeIds.ASPECT_RATIO,
+          nodeId: nodeIds.LATENT_IMAGE,
           fieldName: "batch_size",
-          fieldValue: batchSize
-        },
-        {
-          nodeId: nodeIds.BATCH_SIZE,
-          fieldName: "value",
           fieldValue: batchSize
         }
       ];

@@ -1,14 +1,15 @@
-// Image size configurations based on ComfyUI workflow aspect ratio options
+// Image size configurations for ERNIE-Image-Turbo
+// This model supports flexible dimensions, common sizes listed below
 export const imageSizes = {
-  "1024x1024": { width: 1024, height: 1024, aspectRatio: "1:1 square 1024x1024" },
-  "896x1152": { width: 896, height: 1152, aspectRatio: "3:4 portrait 896x1152" },
-  "832x1216": { width: 832, height: 1216, aspectRatio: "5:8 portrait 832x1216" },
-  "768x1344": { width: 768, height: 1344, aspectRatio: "9:16 portrait 768x1344" },
-  "640x1536": { width: 640, height: 1536, aspectRatio: "9:21 portrait 640x1536" },
-  "1152x896": { width: 1152, height: 896, aspectRatio: "4:3 landscape 1152x896" },
-  "1216x832": { width: 1216, height: 832, aspectRatio: "3:2 landscape 1216x832" },
-  "1344x768": { width: 1344, height: 768, aspectRatio: "16:9 landscape 1344x768" },
-  "1536x640": { width: 1536, height: 640, aspectRatio: "21:9 landscape 1536x640" }
+  "1024x1024": { width: 1024, height: 1024 },
+  "768x1024": { width: 768, height: 1024 },
+  "1024x768": { width: 1024, height: 768 },
+  "512x512": { width: 512, height: 512 },
+  "768x768": { width: 768, height: 768 },
+  "1280x720": { width: 1280, height: 720 },
+  "720x1280": { width: 720, height: 1280 },
+  "1024x576": { width: 1024, height: 576 },
+  "576x1024": { width: 576, height: 1024 }
 };
 
 export function parseImageSize(sizeStr) {
