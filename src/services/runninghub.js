@@ -46,17 +46,22 @@ export class RunningHubService {
           fieldValue: cfgScale
         },
         {
-          nodeId: nodeIds.LATENT_IMAGE,
+          nodeId: nodeIds.ASPECT_RATIO,
+          fieldName: "aspect_ratio",
+          fieldValue: params.aspectRatio || "1:1 square 1024x1024"
+        },
+        {
+          nodeId: nodeIds.ASPECT_RATIO,
           fieldName: "width",
           fieldValue: width
         },
         {
-          nodeId: nodeIds.LATENT_IMAGE,
+          nodeId: nodeIds.ASPECT_RATIO,
           fieldName: "height",
           fieldValue: height
         },
         {
-          nodeId: nodeIds.LATENT_IMAGE,
+          nodeId: nodeIds.ASPECT_RATIO,
           fieldName: "batch_size",
           fieldValue: batchSize
         }

@@ -73,6 +73,7 @@ router.post('/generations', async (req, res) => {
       prompt,
       width: sizeConfig.width,
       height: sizeConfig.height,
+      aspectRatio: sizeConfig.aspectRatio,
       steps: num_inference_steps,
       cfgScale: guidance_scale,
       seed,
